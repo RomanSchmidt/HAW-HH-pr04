@@ -1,14 +1,20 @@
+# Author: Roman Schmidt, Daniel Osterholz
+#
+# This class fulfills the task of pr04 (1.1 - 1.3)
 class Fibonacci
 
   private
 
+  # declare the defaults for 0 and 1 in a cache
   def initialize
     @cache = [0, 1]
-    @lock = Mutex.new
   end
 
   public
 
+  # 1.1 calculation of fibonacci numbers recursively
+  # raises an ArgumentError
+  # just integers >= 0
   def get_via_recursion(value)
     if is_valid_value?(value) === false
       raise ArgumentError
@@ -21,39 +27,8 @@ class Fibonacci
     @cache[value] = get_via_recursion(value - 1) + get_via_recursion(value - 2)
   end
 
-  #def get_via_rec_thread(value)
-  #  if valid_value?(value)
-  #    raise ArgumentError
-  #  end
-  #
-  #  if @cache[value]
-  #    return @cache[value]
-  #  end
-  #
-  #  number1 = 0
-  #  number2 = 0
-  #  threads = []
-  #
-  #  if value > 15
-  #    number1 = @cache[value - 1] = get_via_rec_thread(value - 1)
-  #    number2 = @cache[value - 2] = get_via_rec_thread(value - 2)
-  #  else
-  #    threads[0] = Thread.new {
-  #      @lock.synchronize {
-  #        number1 = @cache[value - 1] = get_via_rec_thread(value - 1)
-  #      }
-  #    }
-  #    threads[1] = Thread.new {
-  #      @lock.synchronize {
-  #        number2 = @cache[value - 2] = get_via_rec_thread(value - 2)
-  #      }
-  #    }
-  #    threads.each {|t| t.join}
-  #  end
-  #
-  #  @cache[value] = number1 + number2
-  #end
-
+  # 1.2 calculation of fibonacci numbers by a loop
+  # raises an ArgumentError
   # slower with cache
   def get_via_loop(value)
     if is_valid_value?(value) === false
@@ -76,6 +51,8 @@ class Fibonacci
     temp_value_1
   end
 
+  # 1.3 using loop implementation to calculate a range to fibonacci numbers
+  # raises an ArgumentError
   def get_by_range(from, to)
     if is_valid_value?(from) === false
       raise ArgumentError
@@ -96,6 +73,7 @@ class Fibonacci
 
   private
 
+  # make sure the value is an positive integer
   def is_valid_value?(value)
     (value.is_a? Integer) && value >= 0 && value % 1 === 0
   end

@@ -1,5 +1,12 @@
-class Palindrom
-  def palindrom?(value)
+# Author: Roman Schmidt, Daniel Osterholz
+#
+# This class fulfills the task of pr04 (2.1)
+class Palindrome
+
+  # return true if value is a palindrome otherwise false
+  # raises ArgumentError if value is not a string
+  # returns false if value is empty after strip
+  def palindrome?(value)
     if (value.is_a? String) === false
       raise ArgumentError
     end
