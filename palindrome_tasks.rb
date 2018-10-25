@@ -26,15 +26,14 @@ class PalindromeTasks
     sgb
   end
 
-  # 2.2 How many palindromic years (bin) are between 2000 and 2100
+  # 2.2 How many palindromic years (binary with leading 0's) are between 2000 and 2100
   def years
     years_range = 2000..2100
     found_palindromes = 0
     years_range.each do |year|
       year_string = year.to_s(2)
-      match_last_zeros = (/[0]+?$/).match(year_string)
-      year_string = match_last_zeros.to_s + year_string
-      @palindrome.palindrome?(year_string) && found_palindromes += 1
+      match_last_zeros = (/[0]+?$/).match(year_string).to_s
+      @palindrome.palindrome?(match_last_zeros + year_string) && found_palindromes += 1
     end
     puts "Between 2000 and 2100 are #{found_palindromes} palindromic years as binary."
   end
