@@ -31,7 +31,10 @@ class PalindromeTasks
     years_range = 2000..2100
     found_palindromes = 0
     years_range.each do |year|
-      @palindrome.palindrome?(year.to_s(2)) && found_palindromes += 1
+      year_string = year.to_s(2)
+      match_last_zeros = (/[0]+?$/).match(year_string)
+      year_string = match_last_zeros.to_s + year_string
+      @palindrome.palindrome?(year_string) && found_palindromes += 1
     end
     puts "Between 2000 and 2100 are #{found_palindromes} palindromic years as binary."
   end
