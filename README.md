@@ -1,7 +1,7 @@
 # Ruby PR04
 
 ```
-PR03 HAWariten
+PR04 HAWariten
 Author: Roman Schmidt, Daniel Osterholz
 ```
 
